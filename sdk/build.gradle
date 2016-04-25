@@ -7,7 +7,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 
 ext {
     pkgGroupId = 'com.nestlabs'
-    pkgVersion = '1.0.0'
+    pkgVersion = '1.1.0'
     pkgName = 'android-sdk'
     pkgDesc = 'Nest Android SDK'
     githubRepo = 'github.com/nestlabs/android-sdk'
