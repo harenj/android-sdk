@@ -15,7 +15,7 @@ Examples are also available in this README below.
 Add the following line to your `build.gradle` in your Android project:
 
 ```gradle
-compile 'com.nestlabs:android-sdk:1.0.0'
+compile 'com.nestlabs:android-sdk:1.1.0'
 ```
 
 ## Quickstart (required)
