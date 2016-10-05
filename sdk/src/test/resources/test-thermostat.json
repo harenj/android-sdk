@@ -30,5 +30,11 @@
   "ambient_temperature_c": 21.5,
   "humidity": 40,
   "hvac_state": "heating",
-  "where_id": "UNCBGUnN24"
+  "where_id": "UNCBGUnN24",
+  "is_locked": true,
+  "locked_temp_min_f": "65",
+  "locked_temp_max_f": "80",
+  "locked_temp_min_c": "19.5",
+  "locked_temp_max_c": "24.5",
+  "label": "upstairs"
 }

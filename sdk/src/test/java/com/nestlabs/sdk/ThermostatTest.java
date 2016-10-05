@@ -75,6 +75,13 @@ public class ThermostatTest {
             assertEquals(thermostat.getAmbientTemperatureC(), 21.5, 0.01);
             assertEquals(thermostat.getHumidity(), 40);
             assertEquals(thermostat.getHvacState(), "heating");
+            //Added by Dave
+            assertEquals(thermostat.isLocked(), true);
+            assertEquals(thermostat.getLockedTempMinF(), "65");
+            assertEquals(thermostat.getLockedTempMaxF(), "80");
+            assertEquals(thermostat.getLockedTempMinC(), "19.5");
+            assertEquals(thermostat.getLockedTempMaxC(), "24.5");
+            assertEquals(thermostat.getLabel(), "upstairs");
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail();
@@ -121,6 +128,13 @@ public class ThermostatTest {
             assertEquals(thermostat.getAmbientTemperatureC(), 21.5, 0.01);
             assertEquals(thermostat.getHumidity(), 40);
             assertEquals(thermostat.getHvacState(), "heating");
+            //Added by Dave
+            assertEquals(thermostat.isLocked(), true);
+            assertEquals(thermostat.getLockedTempMinF(), "65");
+            assertEquals(thermostat.getLockedTempMaxF(), "80");
+            assertEquals(thermostat.getLockedTempMinC(), "19.5");
+            assertEquals(thermostat.getLockedTempMaxC(), "24.5");
+            assertEquals(thermostat.getLabel(), "upstairs");
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail();

@@ -248,4 +248,27 @@ public final class ThermostatSetter {
         String path = getPath(thermostatId, Thermostat.KEY_FAN_TIMER_ACTIVE);
         mFirebaseRef.child(path).setValue(isActive);
     }
+    //Added by Dave
+    /**
+     * Sets the thermostat scale to Fahrenheit or Celsius; used with temperature display.
+     *
+     * @param thermostatId The unique identifier for the {@link Thermostat}.
+     * @param tempScale    A string for temperature scale. "F" for Fahrenheit, "C" for Celsius.
+     */
+    public void setTemperatureScale(@NonNull String thermostatId, String tempScale,
+                                    @NonNull Callback callback) {
+        String path = getPath(thermostatId, Thermostat.KEY_TEMP_SCALE);
+        mFirebaseRef.child(path).setValue(tempScale, new NestCompletionListener(callback));
+    }
+
+    /**
+     * Sets the thermostat label.
+     *
+     * @param thermostatId The unique identifier for the {@link Thermostat}.
+     * @param label        A string for the custom label.
+     */
+    public void setLabel(@NonNull String thermostatId, String label, @NonNull Callback callback) {
+        String path = getPath(thermostatId, Thermostat.KEY_LABEL);
+        mFirebaseRef.child(path).setValue(label, new NestCompletionListener(callback));
+    }
 }

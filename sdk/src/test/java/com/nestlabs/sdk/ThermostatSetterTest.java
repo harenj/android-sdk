@@ -256,4 +256,44 @@ public class ThermostatSetterTest {
                 + Thermostat.KEY_FAN_TIMER_ACTIVE);
         Mockito.verify(mockFirebase).setValue(testValue, mockListener);
     }
+    //Added by Dave
+    @Test
+    public void testSetTemperatureScaleToCelsius_withCallback_shouldSetCorrectValues() {
+        String testId = "test-id";
+        String testValueF = "F";
+        String testValueC = "C";
+
+        ThermostatSetter setter = new ThermostatSetter(mockFirebase);
+        setter.setTemperatureScale(testId, testValueC, mockCallback);
+
+        Mockito.verify(mockFirebase).child("/devices/thermostats/" + testId + "/"
+                + Thermostat.KEY_TEMP_SCALE);
+        Mockito.verify(mockFirebase).setValue(testValueC, mockListener);
+    }
+
+    @Test
+    public void testSetTemperatureScaleToFahrenheit_withCallback_shouldSetCorrectValues() {
+        String testId = "test-id";
+        String testValueF = "F";
+
+        ThermostatSetter setter = new ThermostatSetter(mockFirebase);
+        setter.setTemperatureScale(testId, testValueF, mockCallback);
+
+        Mockito.verify(mockFirebase).child("/devices/thermostats/" + testId + "/"
+                + Thermostat.KEY_TEMP_SCALE);
+        Mockito.verify(mockFirebase).setValue(testValueF, mockListener);
+    }
+
+    @Test
+    public void testSetLabel_withCallback_shouldSetCorrectValues() {
+        String testId = "test-id";
+        String testValue = "testLabel";
+
+        ThermostatSetter setter = new ThermostatSetter(mockFirebase);
+        setter.setLabel(testId, testValue, mockCallback);
+
+        Mockito.verify(mockFirebase).child("/devices/thermostats/" + testId + "/"
+                + Thermostat.KEY_LABEL);
+        Mockito.verify(mockFirebase).setValue(testValue, mockListener);
+    }
 }

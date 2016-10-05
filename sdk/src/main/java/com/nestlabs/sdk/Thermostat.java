@@ -56,6 +56,13 @@ public class Thermostat extends Device implements Parcelable {
     public static final String KEY_AMBIENT_TEMP_C = "ambient_temperature_c";
     public static final String KEY_HUMIDITY = "humidity";
     public static final String KEY_HVAC_STATE = "hvac_state";
+    //Added by Dave
+    public static final String KEY_IS_LOCKED = "is_locked";
+    public static final String KEY_LOCKED_TEMP_MIN_F = "locked_temp_min_f";
+    public static final String KEY_LOCKED_TEMP_MAX_F = "locked_temp_max_f";
+    public static final String KEY_LOCKED_TEMP_MIN_C = "locked_temp_min_c";
+    public static final String KEY_LOCKED_TEMP_MAX_C = "locked_temp_max_c";
+    public static final String KEY_LABEL = "label";
 
     @JsonProperty(KEY_CAN_COOL)
     private boolean mCanCool;
@@ -125,6 +132,24 @@ public class Thermostat extends Device implements Parcelable {
 
     @JsonProperty(KEY_HVAC_STATE)
     private String mHvacState;
+    //Added by Dave
+    @JsonProperty(KEY_IS_LOCKED)
+    private boolean mIsLocked;
+
+    @JsonProperty(KEY_LOCKED_TEMP_MIN_F)
+    private String mLockedTempMinF;
+
+    @JsonProperty(KEY_LOCKED_TEMP_MAX_F)
+    private String mLockedTempMaxF;
+
+    @JsonProperty(KEY_LOCKED_TEMP_MIN_C)
+    private String mLockedTempMinC;
+
+    @JsonProperty(KEY_LOCKED_TEMP_MAX_C)
+    private String mLockedTempMaxC;
+
+    @JsonProperty(KEY_LABEL)
+    private String mLabel;
 
     public Thermostat() {}
 
@@ -153,6 +178,13 @@ public class Thermostat extends Device implements Parcelable {
         mAmbientTemperatureC = in.readDouble();
         mHumidity = in.readLong();
         mHvacState = in.readString();
+        //Added by Dave
+        mIsLocked = readBoolean(in);
+        mLockedTempMinF = in.readString();
+        mLockedTempMaxF = in.readString();
+        mLockedTempMinC = in.readString();
+        mLockedTempMaxC = in.readString();
+        mLabel = in.readString();
     }
 
     /**
@@ -406,6 +438,67 @@ public class Thermostat extends Device implements Parcelable {
         return mHvacMode;
     }
 
+    //Added by Dave
+    /**
+     * Returns true if the thermostat is locked.
+     *
+     * @return a boolean indicating if the thermostat is locked or not.
+     */
+    @JsonGetter(KEY_IS_LOCKED)
+    public boolean isLocked() {
+        return mIsLocked;
+    }
+
+    /**
+     * Returns the minimum locked temperature in Fahrenheit.
+     *
+     * @return the minimum locked temperature in Fahrenheit.
+     */
+    @JsonGetter(KEY_LOCKED_TEMP_MIN_F)
+    public String getLockedTempMinF() {
+        return mLockedTempMinF;
+    }
+
+    /**
+     * Returns the maximum locked temperature in Fahrenheit.
+     *
+     * @return the maximum locked temperature in Fahrenheit.
+     */
+    @JsonGetter(KEY_LOCKED_TEMP_MAX_F)
+    public String getLockedTempMaxF() {
+        return mLockedTempMaxF;
+    }
+
+    /**
+     * Returns the minimum locked temperature in Celsius.
+     *
+     * @return the minimum locked temperature in Celsius.
+     */
+    @JsonGetter(KEY_LOCKED_TEMP_MIN_C)
+    public String getLockedTempMinC() {
+        return mLockedTempMinC;
+    }
+
+    /**
+     * Returns the maximum locked temperature in Celsius.
+     *
+     * @return the maximum locked temperature in Celsius.
+     */
+    @JsonGetter(KEY_LOCKED_TEMP_MAX_C)
+    public String getLockedTempMaxC() {
+        return mLockedTempMaxC;
+    }
+
+    /**
+     * Returns the current label of the thermostat.
+     *
+     * @return the current label of the thermostat.
+     */
+    @JsonGetter(KEY_LABEL)
+    public String getLabel() {
+        return mLabel;
+    }
+
     public static final Creator<Thermostat> CREATOR = new Creator<Thermostat>() {
         @Override
         public Thermostat createFromParcel(Parcel in) {
@@ -466,5 +559,12 @@ public class Thermostat extends Device implements Parcelable {
         dest.writeDouble(mAmbientTemperatureC);
         dest.writeLong(mHumidity);
         dest.writeString(mHvacState);
+        //Added by Dave
+        Utils.writeBoolean(dest, mIsLocked);
+        dest.writeString(mLockedTempMinF);
+        dest.writeString(mLockedTempMaxF);
+        dest.writeString(mLockedTempMinC);
+        dest.writeString(mLockedTempMaxC);
+        dest.writeString(mLabel);
     }
 }

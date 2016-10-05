@@ -12,6 +12,10 @@
   "is_video_history_enabled": true,
   "web_url": "https://home.nest.com/cameras/device_id?auth=access_token",
   "app_url": "nestmobile://cameras/device_id?auth=access_token",
+  "is_public_share_enabled": true,
+  "activity_zones": [ { "name": "Walkway", "id": "244083" }, { "name": "Porch", "id": "237084" } ],
+  "public_share_url": "https://video.nest.com/live/STRING1?STRING2",
+  "snapshot_url": "STRING1/device_id/STRING2?auth=access_token",
   "last_event": {
     "has_sound": true,
     "has_motion": true,
@@ -21,6 +25,7 @@
     "web_url": "https://home.nest.com/cameras/device_id/cuepoints/STRING?auth=access_token",
     "app_url": "nestmobile://cameras/device_id/cuepoints/STRING?auth=access_token",
     "image_url": "STRING1/device_id/STRING2?auth=access_token",
-    "animated_image_url": "STRING1/device_id/STRING2?auth=access_token"
+    "animated_image_url": "STRING1/device_id/STRING2?auth=access_token",
+    "activity_zone_ids": [ "244083", "237084" ]
   }
 }

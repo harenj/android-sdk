@@ -23,11 +23,13 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 public class CameraTest {
 
@@ -48,6 +50,11 @@ public class CameraTest {
             assertFalse(camera.isVideoHistoryEnabled());
             assertNull(camera.getWebUrl());
             assertNull(camera.getAppUrl());
+            //Added by Dave
+            assertFalse(camera.getIsPublicShareEnabled());
+            assertTrue(camera.getActivityZones().isEmpty());
+            assertNull(camera.getPublicShareUrl());
+            assertNull(camera.getSnapshotUrl());
             assertNull(camera.getLastEvent());
         } catch (IOException e) {
             e.printStackTrace();
@@ -77,6 +84,17 @@ public class CameraTest {
             assertEquals(camera.getWebUrl(),
                     "https://home.nest.com/cameras/device_id?auth=access_token");
             assertEquals(camera.getAppUrl(), "nestmobile://cameras/device_id?auth=access_token");
+            //Added by Dave
+            assertEquals(camera.getIsPublicShareEnabled(), true);
+
+            assertEquals(camera.getActivityZones().get(0).getName(), "Walkway");
+            assertEquals(camera.getActivityZones().get(0).getId(), "244083");
+
+            assertEquals(camera.getActivityZones().get(1).getName(), "Porch");
+            assertEquals(camera.getActivityZones().get(1).getId(), "237084");
+
+            assertEquals(camera.getPublicShareUrl(), "https://video.nest.com/live/STRING1?STRING2");
+            assertEquals(camera.getSnapshotUrl(), "STRING1/device_id/STRING2?auth=access_token");
 
             Camera.LastEvent lastEvent = camera.getLastEvent();
 
@@ -86,6 +104,10 @@ public class CameraTest {
                     "nestmobile://cameras/device_id/cuepoints/STRING?auth=access_token";
             String expectedImageUrl = "STRING1/device_id/STRING2?auth=access_token";
             String expectedAnimatedImageUrl = "STRING1/device_id/STRING2?auth=access_token";
+            //Added by Dave
+            ArrayList<String> expectedActivityZoneIds = new ArrayList<>();
+            expectedActivityZoneIds.add("244083");
+            expectedActivityZoneIds.add("237084");
 
             assertEquals(lastEvent.getHasSound(), true);
             assertEquals(lastEvent.getHasMotion(), true);
@@ -96,6 +118,8 @@ public class CameraTest {
             assertEquals(lastEvent.getAppUrl(), expectedAppUrl);
             assertEquals(lastEvent.getImageUrl(), expectedImageUrl);
             assertEquals(lastEvent.getAnimatedImageUrl(), expectedAnimatedImageUrl);
+            //Added by Dave
+            assertEquals(expectedActivityZoneIds, lastEvent.getActivityZoneIds());
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail();
@@ -124,6 +148,17 @@ public class CameraTest {
             assertEquals(camera.getWebUrl(),
                     "https://home.nest.com/cameras/device_id?auth=access_token");
             assertEquals(camera.getAppUrl(), "nestmobile://cameras/device_id?auth=access_token");
+            //Added by Dave
+            assertEquals(camera.getIsPublicShareEnabled(), true);
+
+            assertEquals(camera.getActivityZones().get(0).getName(), "Walkway");
+            assertEquals(camera.getActivityZones().get(0).getId(), "244083");
+
+            assertEquals(camera.getActivityZones().get(1).getName(), "Porch");
+            assertEquals(camera.getActivityZones().get(1).getId(), "237084");
+
+            assertEquals(camera.getPublicShareUrl(), "https://video.nest.com/live/STRING1?STRING2");
+            assertEquals(camera.getSnapshotUrl(), "STRING1/device_id/STRING2?auth=access_token");
 
             Camera.LastEvent lastEvent = camera.getLastEvent();
 
@@ -133,6 +168,10 @@ public class CameraTest {
                     "nestmobile://cameras/device_id/cuepoints/STRING?auth=access_token";
             String expectedImageUrl = "STRING1/device_id/STRING2?auth=access_token";
             String expectedAnimatedImageUrl = "STRING1/device_id/STRING2?auth=access_token";
+            //Added by Dave
+            ArrayList<String> expectedActivityZoneIds = new ArrayList<>();
+            expectedActivityZoneIds.add("244083");
+            expectedActivityZoneIds.add("237084");
 
             assertEquals(lastEvent.getHasSound(), true);
             assertEquals(lastEvent.getHasMotion(), true);
@@ -143,6 +182,8 @@ public class CameraTest {
             assertEquals(lastEvent.getAppUrl(), expectedAppUrl);
             assertEquals(lastEvent.getImageUrl(), expectedImageUrl);
             assertEquals(lastEvent.getAnimatedImageUrl(), expectedAnimatedImageUrl);
+            //Added by Dave
+            assertEquals(lastEvent.getActivityZoneIds(), expectedActivityZoneIds);
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail();
