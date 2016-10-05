@@ -248,7 +248,7 @@ public final class ThermostatSetter {
         String path = getPath(thermostatId, Thermostat.KEY_FAN_TIMER_ACTIVE);
         mFirebaseRef.child(path).setValue(isActive);
     }
-    //Added by Dave
+
     /**
      * Sets the thermostat scale to Fahrenheit or Celsius; used with temperature display.
      *

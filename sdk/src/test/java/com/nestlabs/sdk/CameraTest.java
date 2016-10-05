@@ -50,7 +50,6 @@ public class CameraTest {
             assertFalse(camera.isVideoHistoryEnabled());
             assertNull(camera.getWebUrl());
             assertNull(camera.getAppUrl());
-            //Added by Dave
             assertFalse(camera.getIsPublicShareEnabled());
             assertTrue(camera.getActivityZones().isEmpty());
             assertNull(camera.getPublicShareUrl());
@@ -84,7 +83,6 @@ public class CameraTest {
             assertEquals(camera.getWebUrl(),
                     "https://home.nest.com/cameras/device_id?auth=access_token");
             assertEquals(camera.getAppUrl(), "nestmobile://cameras/device_id?auth=access_token");
-            //Added by Dave
             assertEquals(camera.getIsPublicShareEnabled(), true);
 
             assertEquals(camera.getActivityZones().get(0).getName(), "Walkway");
@@ -104,7 +102,7 @@ public class CameraTest {
                     "nestmobile://cameras/device_id/cuepoints/STRING?auth=access_token";
             String expectedImageUrl = "STRING1/device_id/STRING2?auth=access_token";
             String expectedAnimatedImageUrl = "STRING1/device_id/STRING2?auth=access_token";
-            //Added by Dave
+
             ArrayList<String> expectedActivityZoneIds = new ArrayList<>();
             expectedActivityZoneIds.add("244083");
             expectedActivityZoneIds.add("237084");
@@ -118,7 +116,6 @@ public class CameraTest {
             assertEquals(lastEvent.getAppUrl(), expectedAppUrl);
             assertEquals(lastEvent.getImageUrl(), expectedImageUrl);
             assertEquals(lastEvent.getAnimatedImageUrl(), expectedAnimatedImageUrl);
-            //Added by Dave
             assertEquals(expectedActivityZoneIds, lastEvent.getActivityZoneIds());
         } catch (IOException e) {
             e.printStackTrace();
@@ -148,7 +145,7 @@ public class CameraTest {
             assertEquals(camera.getWebUrl(),
                     "https://home.nest.com/cameras/device_id?auth=access_token");
             assertEquals(camera.getAppUrl(), "nestmobile://cameras/device_id?auth=access_token");
-            //Added by Dave
+
             assertEquals(camera.getIsPublicShareEnabled(), true);
 
             assertEquals(camera.getActivityZones().get(0).getName(), "Walkway");
@@ -168,7 +165,7 @@ public class CameraTest {
                     "nestmobile://cameras/device_id/cuepoints/STRING?auth=access_token";
             String expectedImageUrl = "STRING1/device_id/STRING2?auth=access_token";
             String expectedAnimatedImageUrl = "STRING1/device_id/STRING2?auth=access_token";
-            //Added by Dave
+
             ArrayList<String> expectedActivityZoneIds = new ArrayList<>();
             expectedActivityZoneIds.add("244083");
             expectedActivityZoneIds.add("237084");
@@ -182,7 +179,7 @@ public class CameraTest {
             assertEquals(lastEvent.getAppUrl(), expectedAppUrl);
             assertEquals(lastEvent.getImageUrl(), expectedImageUrl);
             assertEquals(lastEvent.getAnimatedImageUrl(), expectedAnimatedImageUrl);
-            //Added by Dave
+
             assertEquals(lastEvent.getActivityZoneIds(), expectedActivityZoneIds);
         } catch (IOException e) {
             e.printStackTrace();

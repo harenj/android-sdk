@@ -256,7 +256,7 @@ public class ThermostatSetterTest {
                 + Thermostat.KEY_FAN_TIMER_ACTIVE);
         Mockito.verify(mockFirebase).setValue(testValue, mockListener);
     }
-    //Added by Dave
+
     @Test
     public void testSetTemperatureScaleToCelsius_withCallback_shouldSetCorrectValues() {
         String testId = "test-id";

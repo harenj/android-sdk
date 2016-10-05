@@ -41,7 +41,6 @@ public class Camera extends Device implements Parcelable {
     public static final String KEY_WEB_URL = "web_url";
     public static final String KEY_APP_URL = "app_url";
     public static final String KEY_LAST_EVENT = "last_event";
-    //Added by Dave
     public static final String KEY_IS_PUBLIC_SHARE_ENABLED = "is_public_share_enabled";
     public static final String KEY_ACTIVITY_ZONES = "activity_zones";
     public static final String KEY_PUBLIC_SHARE_URL = "public_share_url";
@@ -68,7 +67,7 @@ public class Camera extends Device implements Parcelable {
 
     @JsonProperty(KEY_LAST_EVENT)
     private LastEvent mLastEvent;
-    //Added by Dave
+
     @JsonProperty(KEY_IS_PUBLIC_SHARE_ENABLED)
     private boolean mIsPublicShareEnabled;
 
@@ -87,7 +86,6 @@ public class Camera extends Device implements Parcelable {
 
     protected Camera(Parcel in) {
         super(in);
-        //Added by Dave
         mActivityZones = new ArrayList<>();
         mIsStreaming = Utils.readBoolean(in);
         mIsAudioInputEnabled = Utils.readBoolean(in);
@@ -140,7 +138,6 @@ public class Camera extends Device implements Parcelable {
         Utils.writeBoolean(dest, mIsVideoHistoryEnabled);
         dest.writeString(mWebUrl);
         dest.writeString(mAppUrl);
-        //Added by Dave
         Utils.writeBoolean(dest, mIsPublicShareEnabled);
         dest.writeTypedList(mActivityZones);
         dest.writeString(mPublicShareUrl);
@@ -213,7 +210,6 @@ public class Camera extends Device implements Parcelable {
         return mAppUrl;
     }
 
-    //Added by Dave
     /**
      * Returns whether public sharing is enabled on the camera.
      *
@@ -279,7 +275,6 @@ public class Camera extends Device implements Parcelable {
         public static final String KEY_APP_URL = "app_url";
         public static final String KEY_IMAGE_URL = "image_url";
         public static final String KEY_ANIMATED_IMAGE_URL = "animated_image_url";
-        //Added by Dave
         public static final String KEY_ACTIVITY_ZONE_IDS = "activity_zone_ids";
 
         @JsonProperty(KEY_HAS_SOUND)
@@ -308,7 +303,7 @@ public class Camera extends Device implements Parcelable {
 
         @JsonProperty(KEY_ANIMATED_IMAGE_URL)
         private String mAnimatedImageUrl;
-        //Added by Dave
+
         @JsonProperty(KEY_ACTIVITY_ZONE_IDS)
         private List<String> mActivityZoneIds;
 
@@ -317,7 +312,6 @@ public class Camera extends Device implements Parcelable {
         }
 
         public LastEvent(Parcel in) {
-            //Added by Dave
             this();
             mHasSound = Utils.readBoolean(in);
             mHasMotion = Utils.readBoolean(in);
@@ -452,7 +446,6 @@ public class Camera extends Device implements Parcelable {
             return mAnimatedImageUrl;
         }
 
-        //Added by Dave
         /**
          * Returns a list of zone ids that detected motion during the last event.
          *
@@ -479,8 +472,6 @@ public class Camera extends Device implements Parcelable {
             parcel.writeString(mAppUrl);
             parcel.writeString(mImageUrl);
             parcel.writeString(mAnimatedImageUrl);
-            //Added by Dave
-            //parcel.writeString(Utils.toString(mActivityZoneIds));
             parcel.writeStringList(mActivityZoneIds);
         }
     }

@@ -56,7 +56,6 @@ public class Thermostat extends Device implements Parcelable {
     public static final String KEY_AMBIENT_TEMP_C = "ambient_temperature_c";
     public static final String KEY_HUMIDITY = "humidity";
     public static final String KEY_HVAC_STATE = "hvac_state";
-    //Added by Dave
     public static final String KEY_IS_LOCKED = "is_locked";
     public static final String KEY_LOCKED_TEMP_MIN_F = "locked_temp_min_f";
     public static final String KEY_LOCKED_TEMP_MAX_F = "locked_temp_max_f";
@@ -132,7 +131,7 @@ public class Thermostat extends Device implements Parcelable {
 
     @JsonProperty(KEY_HVAC_STATE)
     private String mHvacState;
-    //Added by Dave
+
     @JsonProperty(KEY_IS_LOCKED)
     private boolean mIsLocked;
 
@@ -178,7 +177,6 @@ public class Thermostat extends Device implements Parcelable {
         mAmbientTemperatureC = in.readDouble();
         mHumidity = in.readLong();
         mHvacState = in.readString();
-        //Added by Dave
         mIsLocked = readBoolean(in);
         mLockedTempMinF = in.readString();
         mLockedTempMaxF = in.readString();
@@ -438,7 +436,6 @@ public class Thermostat extends Device implements Parcelable {
         return mHvacMode;
     }
 
-    //Added by Dave
     /**
      * Returns true if the thermostat is locked.
      *
@@ -559,7 +556,6 @@ public class Thermostat extends Device implements Parcelable {
         dest.writeDouble(mAmbientTemperatureC);
         dest.writeLong(mHumidity);
         dest.writeString(mHvacState);
-        //Added by Dave
         Utils.writeBoolean(dest, mIsLocked);
         dest.writeString(mLockedTempMinF);
         dest.writeString(mLockedTempMaxF);
