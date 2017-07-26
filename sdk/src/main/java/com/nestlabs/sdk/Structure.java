@@ -210,7 +210,7 @@ public final class Structure implements Parcelable {
     @JsonGetter(KEY_POSTAL_CODE)
     public String getPostalCode() {
         // TODO this is a workaround for https://github.com/nestlabs/android-sdk/issues/22
-        if (mCountryCode.equals("CA")) {
+        if ("CA".equals(mCountryCode)) {
             return mPostalCode.substring(0, 3) + " " + mPostalCode.substring(3, 6);
         } else {
             return mPostalCode;
