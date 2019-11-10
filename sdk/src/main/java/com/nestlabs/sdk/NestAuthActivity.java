@@ -24,6 +24,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.CookieManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -32,14 +33,14 @@ import android.widget.ProgressBar;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.IOException;
+
 import okhttp3.Call;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-
-import java.io.IOException;
 
 /**
  * NestAuthActivity is an Activity used by NestAPI to complete the OAuth 2.0 flow for authorization
@@ -87,6 +88,11 @@ public class NestAuthActivity extends Activity {
         WebSettings webSettings = clientWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         clientWebView.loadUrl(url);
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            CookieManager.getInstance().setAcceptThirdPartyCookies(clientWebView, true);
+        } else {
+            CookieManager.getInstance().setAcceptCookie(true);
+        }
     }
 
     /**
